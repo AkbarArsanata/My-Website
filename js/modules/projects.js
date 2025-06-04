@@ -1,4 +1,4 @@
-import { projectsData } from './projectsdata.js';
+import { projectsData } from './projectsData.js';
 
 export function initProjects() {
   try {
