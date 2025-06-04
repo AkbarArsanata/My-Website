@@ -38,31 +38,3 @@
         </div>
     </div>
 </footer>
-
-<!-- GoatCounter Script dengan Debug Mode -->
-<script data-goatcounter="https://akbararsanata.goatcounter.com/count" 
-        data-goatcounter-debug
-        async src="//gc.zgo.at/count.js"></script>
-
-<!-- Manual Hit Debug Script -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    if (typeof goatcounter !== 'undefined' && typeof goatcounter.count === 'function') {
-        console.log('[DEBUG] GoatCounter ditemukan dan siap digunakan.');
-
-        // Kirim hit manual untuk debugging
-        goatcounter.count({
-            path: '/manual-hit',
-            title: 'Debug Hit - Homepage',
-            referrer: document.referrer,
-        });
-
-        console.log('[DEBUG] Hit manual dikirim ke GoatCounter');
-    } else {
-        console.error('[ERROR] GoatCounter tidak ditemukan atau gagal dimuat.');
-    }
-});
-</script>
-
-<!-- Footer JS -->
-<script src="footer.js" type="module"></script>
