@@ -1,65 +1,4 @@
-export const projectsData = [
-  {
-    id: 1,
-    title: "AI Financial Predictor",
-    description: "Machine learning model predicting stock trends with 94% accuracy using LSTM networks.",
-    longDescription: "This project involved collecting and processing large datasets of historical stock prices and financial news. I implemented an LSTM neural network with attention mechanisms to identify patterns in price movements. The system achieved a backtested accuracy of 94% in predicting 30-day price movements.",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    projectUrl: "#",
-    codeUrl: "#",
-    tags: ["AI", "Python", "TensorFlow"],
-    category: "machine-learning",
-    date: "2023-11-15",
-    stars: 142,
-    forks: 38,
-    featured: true,
-    stats: {
-      accuracy: "94%",
-      latency: "200ms",
-      dataset: "5TB"
-    }
-  },
-  {
-    id: 2,
-    title: "Data Visualization Dashboard",
-    description: "Interactive dashboard built with React and D3.js for complex data visualization.",
-    longDescription: "Created a responsive dashboard that processes real-time data streams and presents them through interactive visualizations. Implemented custom D3.js charts with smooth transitions and tooltips. The system handles over 10,000 data points per second with optimized rendering performance.",
-    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    projectUrl: "#",
-    codeUrl: "#",
-    tags: ["React", "D3.js", "JavaScript"],
-    category: "web-dev",
-    date: "2023-08-22",
-    stars: 89,
-    forks: 24,
-    featured: false,
-    stats: {
-      performance: "60FPS",
-      dataPoints: "10K/sec",
-      components: "45+"
-    }
-  },
-  {
-    id: 3,
-    title: "Customer Segmentation Model",
-    description: "Unsupervised learning model for customer segmentation using clustering algorithms.",
-    longDescription: "Developed a customer segmentation system using K-means and hierarchical clustering algorithms. Processed over 1 million customer records to identify 7 distinct segments. The model improved marketing campaign targeting by 37% compared to previous methods.",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    projectUrl: "#",
-    codeUrl: "#",
-    tags: ["Machine Learning", "Scikit-learn", "Pandas"],
-    category: "data-science",
-    date: "2023-05-10",
-    stars: 76,
-    forks: 19,
-    featured: true,
-    stats: {
-      segments: "7",
-      records: "1M+",
-      improvement: "37%"
-    }
-  }
-];
+import { projectsData } from './projectsdata.js';
 
 export function initProjects() {
   try {
@@ -69,6 +8,7 @@ export function initProjects() {
     const loadMoreBtn = document.getElementById('loadMore');
     const projectModal = document.getElementById('projectModal');
     const closeModal = document.querySelector('.close-modal');
+    const modalBody = document.querySelector('.modal-body');
     
     // Initial variables
     let currentFilter = 'all';
@@ -112,11 +52,14 @@ export function initProjects() {
             </div>
             
             <div class="project-actions">
-              <a href="${project.projectUrl}" class="project-link demo" target="_blank" rel="noopener">
-                <i class="fas fa-external-link-alt"></i> Demo
+              <button class="project-btn overview">
+                <i class="fas fa-info-circle"></i> Overview
+              </button>
+              <a href="${project.projectUrl}" class="project-btn demo" target="_blank" rel="noopener">
+                <i class="fas fa-external-link-alt"></i> View Project
               </a>
-              <a href="${project.codeUrl}" class="project-link code" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i> Code
+              <a href="${project.codeUrl}" class="project-btn code" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i> View Code
               </a>
             </div>
           </div>
@@ -167,68 +110,6 @@ export function initProjects() {
       }, 800);
     };
     
-    const showProjectModal = (projectId) => {
-      const project = projectsData.find(p => p.id === projectId);
-      if (!project) return;
-      
-      const modalBody = document.querySelector('.modal-body');
-      modalBody.innerHTML = `
-        <div class="modal-header">
-          <h3>${project.title}</h3>
-          <div class="modal-meta">
-            <span class="modal-date"><i class="far fa-calendar-alt"></i> ${formatDate(project.date)}</span>
-            <div class="modal-stats">
-              <span class="modal-stat"><i class="far fa-star"></i> ${project.stars} Stars</span>
-              <span class="modal-stat"><i class="fas fa-code-branch"></i> ${project.forks} Forks</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="modal-media">
-          <img src="${project.imageUrl}" alt="${project.title}">
-        </div>
-        
-        <div class="modal-details">
-          <div class="modal-description">
-            <h4>Project Overview</h4>
-            <p>${project.longDescription}</p>
-          </div>
-          
-          <div class="modal-tech">
-            <h4>Technologies Used</h4>
-            <div class="tech-stack">
-              ${project.tags.map(tag => `
-                <div class="tech-item">
-                  <i class="${getTechIcon(tag)}"></i>
-                  <span>${tag}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-          
-          <div class="modal-stats-grid">
-            ${project.stats ? Object.entries(project.stats).map(([key, value]) => `
-              <div class="stat-item">
-                <div class="stat-value">${value}</div>
-                <div class="stat-label">${key.replace(/-/g, ' ')}</div>
-              </div>
-            `).join('') : ''}
-          </div>
-        </div>
-        
-        <div class="modal-actions">
-          <a href="${project.projectUrl}" class="modal-btn demo" target="_blank" rel="noopener">
-            <i class="fas fa-external-link-alt"></i> Live Demo
-          </a>
-          <a href="${project.codeUrl}" class="modal-btn code" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i> View Code
-          </a>
-        </div>
-      `;
-      
-      projectModal.classList.add('active');
-    };
-    
     const getTechIcon = (tech) => {
       const icons = {
         'AI': 'fas fa-brain',
@@ -242,6 +123,138 @@ export function initProjects() {
         'Pandas': 'fas fa-table'
       };
       return icons[tech] || 'fas fa-code';
+    };
+
+    // Show project modal
+    const showProjectModal = (projectId) => {
+      const project = projectsData.find(p => p.id === projectId);
+      if (!project) return;
+      
+      // Add modal-active class to body
+      document.body.classList.add('modal-active');
+      
+      modalBody.innerHTML = `
+        <div class="modal-header">
+          <div class="modal-header-content">
+            <h3>${project.title}</h3>
+            <div class="modal-meta">
+              <span class="modal-date"><i class="far fa-calendar-alt"></i> ${formatDate(project.date)}</span>
+              <div class="modal-stats">
+                <span class="modal-stat"><i class="far fa-star"></i> ${project.stars} Stars</span>
+                <span class="modal-stat"><i class="fas fa-code-branch"></i> ${project.forks} Forks</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-header-bg" style="background: linear-gradient(135deg, ${project.color1 || '#6e45e2'}, ${project.color2 || '#88d3ce'})"></div>
+        </div>
+        
+        <div class="modal-content-wrapper">
+          <div class="modal-media">
+            <img src="${project.imageUrl}" alt="${project.title}" class="modal-image">
+            <div class="image-overlay"></div>
+          </div>
+          
+          <div class="modal-details">
+            <div class="modal-description">
+              <h4><i class="fas fa-info-circle"></i> Project Overview</h4>
+              <p>${project.longDescription}</p>
+              
+              ${project.features ? `
+                <div class="modal-features">
+                  <h5><i class="fas fa-check-circle"></i> Key Features</h5>
+                  <ul>
+                    ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                  </ul>
+                </div>
+              ` : ''}
+            </div>
+            
+            <div class="modal-sidebar">
+              <div class="modal-tech">
+                <h4><i class="fas fa-code"></i> Tech Stack</h4>
+                <div class="tech-stack">
+                  ${project.tags.map(tag => `
+                    <div class="tech-item" style="background: ${getTechColor(tag)}">
+                      <i class="${getTechIcon(tag)}"></i>
+                      <span>${tag}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              
+              ${project.stats ? `
+                <div class="modal-stats-grid">
+                  ${Object.entries(project.stats).map(([key, value]) => `
+                    <div class="stat-item">
+                      <div class="stat-value">${value}</div>
+                      <div class="stat-label">${key.replace(/-/g, ' ')}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <a href="${project.projectUrl}" class="modal-btn demo" target="_blank" rel="noopener">
+            <i class="fas fa-external-link-alt"></i> View Project
+          </a>
+          <a href="${project.codeUrl}" class="modal-btn code" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+        
+        <div class="modal-footer">
+          ${project.learnings ? `
+            <div class="modal-learnings">
+              <h4><i class="fas fa-lightbulb"></i> Key Learnings</h4>
+              <p>${project.learnings}</p>
+            </div>
+          ` : ''}
+        </div>
+      `;
+      
+      projectModal.classList.add('active');
+      
+      // Add animation class after a short delay
+      setTimeout(() => {
+        const modalContent = document.querySelector('.modal-content');
+        if (modalContent) {
+          modalContent.classList.add('animate-in');
+        }
+      }, 10);
+    };
+
+    const getTechColor = (tech) => {
+      const colors = {
+        'AI': 'rgba(255, 126, 95, 0.1)',
+        'Python': 'rgba(53, 114, 165, 0.1)',
+        'TensorFlow': 'rgba(255, 152, 0, 0.1)',
+        'React': 'rgba(97, 218, 251, 0.1)',
+        'D3.js': 'rgba(249, 169, 89, 0.1)',
+        'JavaScript': 'rgba(247, 223, 30, 0.1)',
+        'Machine Learning': 'rgba(0, 150, 199, 0.1)',
+        'Scikit-learn': 'rgba(30, 136, 229, 0.1)',
+        'Pandas': 'rgba(20, 108, 148, 0.1)'
+      };
+      return colors[tech] || 'rgba(110, 69, 226, 0.1)';
+    };
+
+    const closeProjectModal = () => {
+      const modalContent = document.querySelector('.modal-content');
+      if (modalContent) {
+        modalContent.classList.remove('animate-in');
+        modalContent.classList.add('animate-out');
+      }
+      
+      setTimeout(() => {
+        projectModal.classList.remove('active');
+        document.body.classList.remove('modal-active');
+        if (modalContent) {
+          modalContent.classList.remove('animate-out');
+        }
+      }, 300);
     };
     
     // Event listeners
@@ -258,24 +271,41 @@ export function initProjects() {
     if (loadMoreBtn) {
       loadMoreBtn.addEventListener('click', loadMoreProjects);
     }
-    
+
     projectGrid.addEventListener('click', (e) => {
+      // Handle overview button click
+      if (e.target.classList.contains('overview')) {
+        const card = e.target.closest('.project-card');
+        if (card) {
+          const projectId = parseInt(card.dataset.id);
+          showProjectModal(projectId);
+        }
+        return;
+      }
+      
+      // Handle clicks on the card itself (if you want to keep that functionality)
       const card = e.target.closest('.project-card');
-      if (card) {
+      if (card && !e.target.closest('.project-btn')) {
         const projectId = parseInt(card.dataset.id);
         showProjectModal(projectId);
       }
     });
     
+    
     if (closeModal) {
-      closeModal.addEventListener('click', () => {
-        projectModal.classList.remove('active');
-      });
+      closeModal.addEventListener('click', closeProjectModal);
     }
     
     projectModal.addEventListener('click', (e) => {
       if (e.target === projectModal) {
-        projectModal.classList.remove('active');
+        closeProjectModal();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+        closeProjectModal();
       }
     });
     

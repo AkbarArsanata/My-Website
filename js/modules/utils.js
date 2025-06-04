@@ -2,7 +2,9 @@
 export async function loadComponent(componentName, containerId) {
     try {
         console.log(`Loading component: ${componentName}.html`);
-        const response = await fetch(`./html/${componentName}.html`);
+
+        // Path is relative to index.html (root level)
+        const response = await fetch(`html/${componentName}.html`);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -12,20 +14,20 @@ export async function loadComponent(componentName, containerId) {
         const container = document.getElementById(containerId);
         
         if (!container) {
-            throw new Error(`Container ${containerId} not found`);
+            throw new Error(`Container with ID "${containerId}" not found`);
         }
         
         container.innerHTML = html;
         console.log(`Successfully loaded ${componentName}`);
         return true;
     } catch (error) {
-        logError(`Failed to load ${componentName}`, error);
+        logError(`Failed to load component "${componentName}"`, error);
         const container = document.getElementById(containerId);
         if (container) {
             container.innerHTML = `
                 <div class="error" style="color:red; padding:20px; border:1px solid red">
-                    Error: Failed to load ${componentName} component. 
-                    <br>${error.message}
+                    ⚠️ Error: Failed to load <strong>${componentName}</strong> component.
+                    <br><small>${error.message}</small>
                 </div>
             `;
         }
@@ -40,22 +42,22 @@ export function logError(message, error) {
         `${error.message}\nStack: ${error.stack}` : 
         JSON.stringify(error);
     
-    console.error(`[${timestamp}] ${message}:`, errorDetails);
+    console.error(`[${timestamp}] ${message}:\n${errorDetails}`);
     
-    // You could also send errors to a logging service here
-    // Example: sendErrorToLoggingService(message, error);
+    // Optional: Send to external logging service
+    // sendErrorToService({ message, errorDetails, timestamp });
 }
 
-// Helper function to check if element exists
+// Helper to check if element exists in DOM
 export function elementExists(selector) {
     return document.querySelector(selector) !== null;
 }
 
-// Debounce function for performance optimization
+// Debounce helper for performance tuning (e.g. scroll/resize handlers)
 export function debounce(func, wait = 100, immediate = false) {
     let timeout;
-    return function() {
-        const context = this, args = arguments;
+    return function (...args) {
+        const context = this;
         const later = function() {
             timeout = null;
             if (!immediate) func.apply(context, args);

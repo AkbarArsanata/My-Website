@@ -1,6 +1,6 @@
 import { initComponents } from './components.js';  
 import { initCertificates } from './certificates.js';
-import { initProjects } from './projects.js';
+import { initProjects } from './projects.js';  // Updated import
 import { setupNavigation } from './navigation.js';
 import { loadComponent, logError } from './utils.js';
 
@@ -51,12 +51,12 @@ async function loadAllComponents() {
         { 
             name: 'projects', 
             container: 'projects-container',
-            init: initProjects
+            init: initProjects  // This will now use the imported initProjects
         },
         { 
             name: 'certificates', 
             container: 'certificates-container',
-            init: initCertificates
+            init: initCertificates 
         },
         { 
             name: 'contact', 
@@ -85,7 +85,7 @@ async function loadAllComponents() {
                 await loadComponent(comp.name, comp.container);
                 
                 if (comp.init) {
-                    await comp.init();
+                    await comp.init();  // This will call initProjects() when loading projects
                 }
                 
                 console.log(`${comp.name} component loaded successfully`);

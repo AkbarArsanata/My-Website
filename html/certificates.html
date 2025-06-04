@@ -4,7 +4,7 @@
         <p class="section-subtitle">
             Browse my professional certifications by category. Each section displays featured certificates - click "View All" to explore the complete collection.
         </p>
-        
+
         <div class="certificate-tabs">
             <button class="tab-btn active" data-category="machine-learning-ai">
                 <i class="fas fa-robot"></i> AI & Machine Learning
@@ -19,37 +19,44 @@
                 <i class="fas fa-cloud"></i> MLOps & Cloud
             </button>
         </div>
-        
+
         <div class="certificate-content">
             <div class="certificate-grid" id="certificate-grid">
                 <!-- Certificates will be loaded here -->
             </div>
-            
+
             <div class="certificate-actions">
                 <button id="view-all-btn" class="action-btn">
                     <span>View All</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="certificate-counter">
-                    <span id="shown-count">8</span> of <span id="total-count">14</span> certificates shown
+                    <span id="shown-count">3</span> of <span id="total-count">0</span> certificates shown
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- PDF Modal -->
     <div class="pdf-modal" id="pdf-modal">
         <div class="pdf-modal-content">
-            <button class="close-modal">&times;</button>
+            <button class="close-modal" aria-label="Close certificate">
+                <i class="fas fa-times"></i>
+            </button>
             <div class="pdf-viewer-container">
                 <iframe id="pdf-viewer" frameborder="0"></iframe>
             </div>
             <div class="pdf-meta">
                 <h3 id="pdf-title">Certificate Title</h3>
                 <p id="pdf-date">Issued: January 2024</p>
-                <a href="#" id="pdf-download" class="download-btn" download>
-                    <i class="fas fa-download"></i> Download PDF
-                </a>
+                <div class="modal-actions">
+                    <a href="#" id="pdf-download" class="download-btn" download>
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <button class="close-btn">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
             </div>
         </div>
     </div>
