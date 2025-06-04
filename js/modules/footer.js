@@ -9,6 +9,7 @@ class Footer {
   }
 
   init() {
+    console.log('[LOCAL DEBUG] Inisialisasi Footer dimulai...');
     this.updateCopyrightYear();
     this.addSocialLinkEffects();
     this.recordVisit();           // Catat kunjungan saat ini
@@ -20,6 +21,7 @@ class Footer {
       const yearElement = document.getElementById('current-year');
       if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
+        console.log(`[LOCAL DEBUG] Copyright tahun diperbarui menjadi ${new Date().getFullYear()}`);
       }
     } catch (error) {
       console.error('Failed to update copyright year:', error);
@@ -28,6 +30,13 @@ class Footer {
 
   addSocialLinkEffects() {
     const socialLinks = document.querySelectorAll('.social-link');
+
+    if (socialLinks.length === 0) {
+      console.warn('[LOCAL DEBUG] Tidak ada .social-link ditemukan untuk efek interaksi.');
+      return;
+    }
+
+    console.log(`[LOCAL DEBUG] Menambahkan efek hover ke ${socialLinks.length} ikon sosial`);
 
     socialLinks.forEach(link => {
       link.addEventListener('mouseenter', () => {
@@ -64,17 +73,23 @@ class Footer {
     }
 
     localStorage.setItem(key, JSON.stringify(visits));
+
+    console.log(`[LOCAL DEBUG] Kunjungan dicatat: ${now}`);
   }
 
   displayVisitHistory() {
     const container = document.getElementById('riwayat-kunjungan');
-    if (!container) return;
+    if (!container) {
+      console.warn('[LOCAL DEBUG] #riwayat-kunjungan tidak ditemukan di DOM.');
+      return;
+    }
 
     const key = 'visitor_history';
     const visits = JSON.parse(localStorage.getItem(key)) || [];
 
     if (visits.length === 0) {
       container.innerHTML = '<p>Belum ada riwayat kunjungan.</p>';
+      console.log('[LOCAL DEBUG] Belum ada riwayat kunjungan tersimpan.');
       return;
     }
 
@@ -90,11 +105,14 @@ class Footer {
       li.textContent = visitTime;
       ul.appendChild(li);
     });
+
+    console.log(`[LOCAL DEBUG] Menampilkan ${visits.length} riwayat kunjungan`);
   }
 }
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('[LOCAL DEBUG] DOMContentLoaded terpicu. Membuat instance Footer...');
   new Footer();
 });
 
