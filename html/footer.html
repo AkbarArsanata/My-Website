@@ -4,31 +4,34 @@
             <div class="footer-message">
                 <h3>Let's Keep in Touch</h3>
                 <p class="appreciation">
-                    A heartfelt thank you for visiting my portfolio! Your time exploring my work means the world to me. 
-                    Whether you're interested in collaboration, opportunities, or just sharing ideas about data and AI, 
+                    A heartfelt thank you for visiting my portfolio! Your time exploring my work means the world to me.
+                    Whether you're interested in collaboration, opportunities, or just sharing ideas about data and AI,
                     I'd love to connect with you.
                 </p>
 
                 <!-- Riwayat Kunjungan -->
                 <div id="riwayat-kunjungan"></div>
             </div>
-            
+
             <div class="footer-social">
                 <h4>Follow My Journey</h4>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/ibrahim-akbar-arsanata"  target="_blank" rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/ibrahim-akbar-arsanata"  target="_blank"
+                       rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://github.com/AkbarArsanata"  target="_blank" rel="noopener noreferrer" class="social-link github" aria-label="GitHub">
+                    <a href="https://github.com/AkbarArsanata"  target="_blank" rel="noopener noreferrer"
+                       class="social-link github" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.instagram.com/akbarsnt_/"  target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram">
+                    <a href="https://www.instagram.com/akbarsnt_/"  target="_blank" rel="noopener noreferrer"
+                       class="social-link instagram" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
         </div>
-        
+
         <div class="footer-legal">
             <p class="copyright">© <span id="current-year">2023</span> Ibrahim Akbar Arsanata. All rights reserved.</p>
             <p class="credits">Crafted with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i> in Indonesia</p>
@@ -36,5 +39,30 @@
     </div>
 </footer>
 
-<!-- GoatCounter Script -->
-<script data-goatcounter="https://akbararsanata.goatcounter.com/count"  async src="//gc.zgo.at/count.js"></script>
+<!-- GoatCounter Script dengan Debug Mode -->
+<script data-goatcounter="https://akbararsanata.goatcounter.com/count" 
+        data-goatcounter-debug
+        async src="//gc.zgo.at/count.js"></script>
+
+<!-- Manual Hit Debug Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof goatcounter !== 'undefined' && typeof goatcounter.count === 'function') {
+        console.log('[DEBUG] GoatCounter ditemukan dan siap digunakan.');
+
+        // Kirim hit manual untuk debugging
+        goatcounter.count({
+            path: '/manual-hit',
+            title: 'Debug Hit - Homepage',
+            referrer: document.referrer,
+        });
+
+        console.log('[DEBUG] Hit manual dikirim ke GoatCounter');
+    } else {
+        console.error('[ERROR] GoatCounter tidak ditemukan atau gagal dimuat.');
+    }
+});
+</script>
+
+<!-- Footer JS -->
+<script src="footer.js" type="module"></script>
