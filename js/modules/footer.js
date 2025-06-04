@@ -1,6 +1,6 @@
 /**
  * Footer Module
- * Handles footer-specific functionality including visitor history
+ * Handles footer-specific functionality including visitor history and UI interactions
  */
 
 class Footer {
