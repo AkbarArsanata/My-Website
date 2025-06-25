@@ -14,8 +14,8 @@ export const projectsData = [
     forks: 38,
     featured: true,
     stats: {
-      Dataset Support: "Only CSV",
-      Maximum dataset: "100 MB"
+      Dataset_Support: "Only CSV",
+      Maximum_dataset: "100 MB"
     }
   },
   {
