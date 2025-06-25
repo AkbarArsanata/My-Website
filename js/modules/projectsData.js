@@ -5,7 +5,7 @@ export const projectsData = [
     description: "Machine learning model end to end project",
     longDescription: "The Univariate Automation Analysis project is a comprehensive tool designed to automate and simplify the analysis of univariate time series data, offering seven key features: Overview for quick data summaries and visualizations, Decomposition to break down trends, seasonality, and residuals, Feature Importance to rank influential time-based variables, Forecasting with automated models like ARIMA and Prophet, Anomalies Detection to identify outliers, Clustering to group similar patterns, and Calendar Analysis to assess time-based effects like holidays or weekly trends. This solution is ideal for data professionals seeking an efficient, all-in-one approach to explore, predict, and derive actionable insights from time series data without extensive manual effort."
     imageUrl: "https://www.google.com/imgres?q=statistika%20gambar%20unik&imgurl=https%3A%2F%2Fwww.shutterstock.com%2Fimage-illustration%2Fdata-analysis-investment-dashboard-bar-260nw-2543533215.jpg&imgrefurl=https%3A%2F%2Fwww.shutterstock.com%2Fid%2Fsearch%2Fstatistika&docid=WLT5VH05EQLM2M&tbnid=PpNjid_uA_2ACM&vet=12ahUKEwiDlNWQlY2OAxXbxzgGHfu8GigQM3oECHEQAA..i&w=462&h=280&hcb=2&ved=2ahUKEwiDlNWQlY2OAxXbxzgGHfu8GigQM3oECHEQAA",
-    projectUrl: "https://chat.deepseek.com/a/chat/s/f7afb089-0915-4e0b-af13-44ae4b69b822",
+    projectUrl: "https://univariateanalysis.netlify.app/",
     codeUrl: "#",
     tags: ["END to END machine learning"],
     category: "machine-learning",
